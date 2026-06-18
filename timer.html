@@ -79,6 +79,82 @@
         .finished.show {
             display: block;
         }
+
+        .minecraft-block {
+            margin-top: 40px;
+            perspective: 1000px;
+        }
+
+        .block-link {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .block-link:hover {
+            transform: rotateX(10deg) rotateY(10deg) scale(1.05);
+        }
+
+        .block-link:active {
+            transform: rotateX(10deg) rotateY(10deg) scale(0.95);
+        }
+
+        .block-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 6s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotateX(0deg) rotateY(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        .block-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .block-top {
+            background-color: #4CAF50;
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .block-bottom {
+            background-color: #2E7D32;
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        .block-front {
+            background-color: #388E3C;
+            transform: translateZ(50px);
+        }
+
+        .block-back {
+            background-color: #2E7D32;
+            transform: rotateY(180deg) translateZ(50px);
+        }
+
+        .block-right {
+            background-color: #43A047;
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .block-left {
+            background-color: #2E7D32;
+            transform: rotateY(-90deg) translateZ(50px);
+        }
     </style>
 </head>
 <body>
@@ -103,6 +179,19 @@
                 <span class="time-unit-value" id="seconds">00</span>
                 <span class="time-unit-label">Seconds</span>
             </div>
+        </div>
+
+        <div class="minecraft-block">
+            <a href="https://classic.minecraft.net/" class="block-link">
+                <div class="block-3d">
+                    <div class="block-face block-top"></div>
+                    <div class="block-face block-bottom"></div>
+                    <div class="block-face block-front"></div>
+                    <div class="block-face block-back"></div>
+                    <div class="block-face block-right"></div>
+                    <div class="block-face block-left"></div>
+                </div>
+            </a>
         </div>
 
         <div class="finished" id="finished">🎉 Time's Up! 🎉</div>
