@@ -19,25 +19,30 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0),
-                        linear-gradient(45deg, #c0c0c0 25%, transparent 25%, transparent 75%, #c0c0c0 75%, #c0c0c0);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+            /* Use your image as the background. Save the image as background.jpg next to this file,
+               or change the URL below to the image location you want to use. */
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* Fallback color while image loads */
             background-color: #dfdfdf;
             padding: 20px;
         }
 
+        /* translucent container so background shows but content stays readable */
         .container {
-            background: #c0c0c0;
+            background: rgba(192,192,192,0.85);
             border: 3px solid;
             border-color: #ffffff #808080 #808080 #ffffff;
             border-radius: 6px;
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -2px -2px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -2px -2px 0 rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0,0,0,0.25);
             max-width: 600px;
             text-align: center;
-            background-image: linear-gradient(to bottom, #dfdfdf 0%, #c0c0c0 100%);
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(2px);
         }
 
         .title-bar {
@@ -86,7 +91,7 @@
 
         .mac-menu-bar {
             display: flex;
-            background: #c0c0c0;
+            background: rgba(192,192,192,0.9);
             border-bottom: 1px solid #808080;
             padding: 2px 5px;
             gap: 15px;
@@ -136,21 +141,24 @@
             letter-spacing: 2px;
             font-family: 'Space Mono', monospace;
             line-height: 1;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
         }
 
         .time-unit-label {
             font-size: 0.65em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.9);
             letter-spacing: 1px;
             font-weight: 300;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .separator {
             font-size: 3em;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.6);
             font-weight: 300;
             margin-bottom: 15px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
         }
 
         .finished {
@@ -160,6 +168,7 @@
             font-weight: 300;
             padding: 40px;
             margin-top: 20px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
         }
 
         .finished.show {
@@ -193,6 +202,13 @@
             display: block;
             object-fit: contain;
             border-radius: 4px;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 520px) {
+            .time-unit-value { font-size: 2.2em; }
+            .separator { font-size: 2em; }
+            .container { width: calc(100% - 32px); }
         }
     </style>
 </head>
