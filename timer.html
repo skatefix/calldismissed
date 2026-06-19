@@ -19,110 +19,126 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            /* Use your image as the background. Save the image as background.jpg next to this file,
-               or change the URL below to the image location you want to use. */
             background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            /* Fallback color while image loads */
             background-color: #dfdfdf;
             padding: 20px;
         }
 
-        /* translucent container so background shows but content stays readable */
-        .container {
-            background: rgba(192,192,192,0.85);
-            border: 3px solid;
-            border-color: #ffffff #808080 #808080 #ffffff;
-            border-radius: 6px;
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -2px -2px 0 rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0,0,0,0.25);
-            max-width: 600px;
-            text-align: center;
+        /* Windows 95 style window */
+        .window {
+            position: fixed;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #000000 inset;
+            width: 600px;
+            height: auto;
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(2px);
-            position: fixed;
-            top: 50%;
+            top: 50px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
+            user-select: none;
         }
 
+        /* Title bar */
         .title-bar {
             background: linear-gradient(to right, #000080, #1084d7);
             color: white;
-            padding: 2px 4px;
+            padding: 2px 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: bold;
-            font-size: 12px;
-            border-radius: 3px 3px 0 0;
-            font-family: 'Chicago', monospace;
-            letter-spacing: 0.5px;
+            font-size: 11px;
+            font-family: 'MS Sans Serif', Arial, sans-serif;
+            letter-spacing: 0px;
             cursor: move;
             user-select: none;
+            flex-shrink: 0;
+            height: 20px;
+        }
+
+        .title-text {
+            padding: 2px 4px;
+            flex: 1;
         }
 
         .title-buttons {
             display: flex;
             gap: 2px;
+            padding-right: 2px;
         }
 
-        .mac-button {
-            width: 14px;
+        .window-button {
+            width: 16px;
             height: 14px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 0, 0, 0.3);
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
             cursor: pointer;
-            font-size: 8px;
+            font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(0, 0, 0, 0.5);
-        }
-
-        .mac-button.close {
-            background: #ff5f56;
-        }
-
-        .mac-button.minimize {
-            background: #ffbd2e;
-        }
-
-        .mac-button.maximize {
-            background: #27c93f;
-        }
-
-        .mac-menu-bar {
-            display: flex;
-            background: rgba(192,192,192,0.9);
-            border-bottom: 1px solid #808080;
-            padding: 2px 5px;
-            gap: 15px;
-            font-size: 12px;
-            font-family: 'Chicago', monospace;
-        }
-
-        .mac-menu-item {
-            padding: 2px 6px;
-            border-radius: 3px;
-            cursor: pointer;
+            font-weight: bold;
+            color: black;
             user-select: none;
+            flex-shrink: 0;
         }
 
-        .mac-menu-item:hover {
+        .window-button:active {
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+        }
+
+        .window-button:hover {
             background: #000080;
             color: white;
         }
 
+        /* Menu bar */
+        .menu-bar {
+            display: flex;
+            background: #c0c0c0;
+            border-bottom: 2px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            padding: 1px 1px;
+            gap: 0;
+            font-size: 11px;
+            font-family: 'MS Sans Serif', Arial, sans-serif;
+            flex-shrink: 0;
+        }
+
+        .menu-item {
+            padding: 2px 4px;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid transparent;
+        }
+
+        .menu-item:hover {
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            background: #000080;
+            color: white;
+        }
+
+        .menu-item:active {
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+        }
+
+        /* Window content */
         .content {
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
             align-items: center;
+            background: #c0c0c0;
+            flex: 1;
         }
 
         .timer-display {
@@ -201,7 +217,6 @@
             transform: rotateX(10deg) rotateY(10deg) scale(0.95);
         }
 
-        /* Image version of the block */
         .block-img {
             width: 100px;
             height: 100px;
@@ -210,29 +225,52 @@
             border-radius: 4px;
         }
 
+        /* Status bar */
+        .status-bar {
+            background: #c0c0c0;
+            border-top: 1px solid;
+            border-color: #dfdfdf #808080 #808080 #dfdfdf;
+            padding: 2px 2px;
+            font-size: 11px;
+            display: flex;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .status-item {
+            border: 1px solid;
+            border-color: #808080 #dfdfdf #dfdfdf #808080;
+            padding: 2px 4px;
+            flex: 1;
+            background: #c0c0c0;
+        }
+
         /* Responsive tweaks */
-        @media (max-width: 520px) {
+        @media (max-width: 640px) {
+            .window {
+                width: calc(100% - 20px);
+            }
             .time-unit-value { font-size: 2.2em; }
             .separator { font-size: 2em; }
-            .container { width: calc(100% - 32px); }
         }
     </style>
 </head>
 <body>
-    <div class="container" id="container">
+    <div class="window" id="window">
         <div class="title-bar" id="titleBar">
-            <span>Countdown Timer</span>
+            <span class="title-text">Countdown Timer</span>
             <div class="title-buttons">
-                <div class="mac-button close"></div>
-                <div class="mac-button minimize"></div>
-                <div class="mac-button maximize"></div>
+                <button class="window-button" id="minimizeBtn">_</button>
+                <button class="window-button" id="maximizeBtn">□</button>
+                <button class="window-button" id="closeBtn">×</button>
             </div>
         </div>
 
-        <div class="mac-menu-bar">
-            <div class="mac-menu-item">File</div>
-            <div class="mac-menu-item">Edit</div>
-            <div class="mac-menu-item">View</div>
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Help</div>
         </div>
 
         <div class="content">
@@ -260,41 +298,71 @@
 
             <div class="minecraft-block">
                 <a href="https://classic.minecraft.net/" class="block-link">
-                    <!-- Replaced the previous 3D CSS block with the provided PNG image named block.png -->
                     <img src="block.png" alt="Block" class="block-img">
                 </a>
             </div>
 
             <div class="finished" id="finished">🎉 Time's Up! 🎉</div>
         </div>
+
+        <div class="status-bar">
+            <div class="status-item">Ready</div>
+        </div>
     </div>
 
     <script>
-        // Draggable window functionality
-        const container = document.getElementById('container');
+        // Window dragging functionality
+        const windowEl = document.getElementById('window');
         const titleBar = document.getElementById('titleBar');
         let isDragging = false;
-        let currentX;
-        let currentY;
-        let initialX;
-        let initialY;
+        let currentX = 0;
+        let currentY = 0;
+        let initialX = 0;
+        let initialY = 0;
 
         titleBar.addEventListener('mousedown', (e) => {
             isDragging = true;
-            initialX = e.clientX - container.offsetLeft;
-            initialY = e.clientY - container.offsetTop;
+            initialX = e.clientX - currentX;
+            initialY = e.clientY - currentY;
+            titleBar.style.cursor = 'grabbing';
         });
 
         document.addEventListener('mousemove', (e) => {
             if (isDragging) {
                 currentX = e.clientX - initialX;
                 currentY = e.clientY - initialY;
-                container.style.transform = `translate(${currentX}px, ${currentY}px)`;
+                windowEl.style.transform = `translate(calc(-50% + ${currentX}px), ${currentY}px)`;
             }
         });
 
         document.addEventListener('mouseup', () => {
             isDragging = false;
+            titleBar.style.cursor = 'move';
+        });
+
+        // Window control buttons
+        document.getElementById('closeBtn').addEventListener('click', () => {
+            windowEl.style.display = 'none';
+        });
+
+        document.getElementById('minimizeBtn').addEventListener('click', () => {
+            windowEl.style.display = windowEl.style.display === 'none' ? 'flex' : 'none';
+        });
+
+        document.getElementById('maximizeBtn').addEventListener('click', () => {
+            if (windowEl.style.width === '100vw') {
+                windowEl.style.width = '600px';
+                windowEl.style.height = 'auto';
+                windowEl.style.top = '50px';
+                windowEl.style.left = '50%';
+                windowEl.style.transform = `translate(calc(-50% + ${currentX}px), ${currentY}px)`;
+            } else {
+                windowEl.style.width = '100vw';
+                windowEl.style.height = '100vh';
+                windowEl.style.top = '0';
+                windowEl.style.left = '0';
+                windowEl.style.transform = 'translate(0, 0)';
+            }
         });
 
         function updateTimer() {
